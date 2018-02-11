@@ -3,17 +3,17 @@ const burger = require('../models/burger');
 
 var router = express.Router()
 
-router.get('/burgers', async (req, res) => {
+router.get('/api/burgers', async (req, res) => {
   let data = await burger.getAllBurgers();
   res.send(data);
 });
 
-router.put('/burgers', async (req, res) => {
+router.put('/api/burgers', async (req, res) => {
   let data = await burger.updateBurger(req.body.burgerId,req.body.devoured);
   res.send(data);
 });
 
-router.post('/burgers', async (req, res, next) => {
+router.post('/api/burgers', async (req, res, next) => {
   await burger.addBurger(req.body.burgerName);
   renderIndex(res);
 });
