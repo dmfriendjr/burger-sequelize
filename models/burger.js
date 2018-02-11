@@ -6,6 +6,14 @@ const burger = {
     let data = await orm.selectAll('burgers');
     return data;
   },
+  getAllEatenBurgers: async () => {
+    let data = await orm.selectAll('burgers', 'devoured', '1');
+    return data;
+  },
+  getAllUneatenBurgers: async () => {
+    let data = await orm.selectAll('burgers', 'devoured', '0');
+    return data;
+  },
   addBurger: async (burgerName) => {
     let data = await orm.insertOne('burgers', 'burger_name', burgerName);
     return data;

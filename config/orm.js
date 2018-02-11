@@ -8,12 +8,19 @@ connection.query('CREATE DATABASE IF NOT EXISTS burgers_db', (err, res) => {
 });
 
 var orm = {
-  selectAll: (tableName) => {
+  selectAll: (tableName, selectionTarget, selectionValue) => {
     return new Promise((resolve, reject) => {
-      connection.query('SELECT * FROM ??', tableName, (err, res) => {
-        if (err) reject(err);
-        resolve(res);
-      })
+      if (selectionTarget) {
+        connection.query('SELECT * FROM ?? WHERE ?? = ?', [tableName, selectionTarget, selectionValue], (err, res) => {
+          if (err) reject(err);
+          resolve(res);
+        })
+      } else {
+        connection.query('SELECT * FROM ??', tableName, (err, res) => {
+          if (err) reject(err);
+          resolve(res);
+        });
+      }
     });
   },
   insertOne: (tableName, column, value) => {

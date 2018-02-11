@@ -10,6 +10,9 @@ app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
 
 app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json());
+
 app.use('/', routes);
+app.use('/static', express.static('public'));
 
 app.listen(port);

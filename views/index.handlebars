@@ -1,12 +1,39 @@
-<h1>Welcome to Ye Ole Burger Shoppe</h1>
-<ul>
-  {{#each uneatenBurgers}}
-  <li>{{burger_name}}</li>
-  {{/each}}
-</ul>
+<h1 class="text-center">Welcome to Ye Ole Burger Shoppe</h1>
 
-<form action="/api/burgers" method="post">
-    <label for="burgerInput">Enter Your Dream Burger</label>
-    <input style="text-align: center" type="text" class="form-control" name="burgerName" id="burgerInput" rows="3"></input>
-    <button type="submit" class="btn btn-primary">Submit</button>
-</form>
+<div class="row justify-content-around">
+  <form class="mt-5 text-center col-4" action="/api/burgers" method="post">
+      <label for="burgerInput"><h3>Enter Your Dream Burger</h3></label>
+      <input style="text-align: center" type="text" class="form-control" name="burgerName" id="burgerInput" rows="3"></input>
+      <button type="submit" class="btn btn-primary m-3">Submit</button>
+  </form>
+</div>
+
+<div class="row justify-content-between">
+<div class="col-4">
+  <div class="card">
+    <div class="card-header text-center">
+      <h3>Click One To Eat It!</h3>
+    </div>
+    <div class="card-body text-center">
+        {{#each uneatenBurgers}}
+        <button class="btn btn-block btn-info eat-burger-btn" id={{id}}>{{burger_name}}!</button>
+        {{/each}}
+    </div>
+  </div>
+</div>
+<div class="col-4">
+  <div class="card">
+    <div class="card-header">
+      <h3>Eaten Burgers</h3>
+    </div>
+    <div class="card-body">
+      <ul>
+        {{#each eatenBurgers}}
+        <li>{{burger_name}}</li>
+        {{/each}}
+      </ul>
+    </div>  
+  </div>
+  </div>
+</div>
+
