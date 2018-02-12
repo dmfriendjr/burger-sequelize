@@ -2,7 +2,7 @@ const connection = require('./connection');
 
 connection.query(`USE ${process.env.DATABASE_NAME}`, (err, res) => {
   connection.query('CREATE TABLE IF NOT EXISTS burgers (id int NOT NULL AUTO_INCREMENT, burger_name VARCHAR(100) NOT NULL, devoured boolean DEFAULT false, time_stamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP, PRIMARY KEY(id))');
-})
+});
 
 var orm = {
   selectAll: (tableName, selectionTarget, selectionValue) => {
