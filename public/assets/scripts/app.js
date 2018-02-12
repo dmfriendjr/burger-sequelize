@@ -15,3 +15,17 @@ Array.from(document.getElementsByClassName('eat-burger-btn')).forEach(element =>
     }));
   });
 });
+
+
+document.getElementById('burger-form').addEventListener('submit', (event) => {
+  event.preventDefault();
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', 'api/burgers');
+  xhr.setRequestHeader('Content-Type', 'application/json');
+  xhr.onload = function() {
+    location.reload();
+  };
+  xhr.send(JSON.stringify({
+    burgerName: event.target[0].value
+  }));
+});
