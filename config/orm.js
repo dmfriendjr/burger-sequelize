@@ -11,11 +11,13 @@ var orm = {
         if (selectionTarget) {
         connectionThread.query('SELECT * FROM ?? WHERE ?? = ?', [tableName, selectionTarget, selectionValue], (err, res) => {
           if (err) reject(err);
+          connectionThread.release();
           resolve(res);
         })
       } else {
         connectionThread.query('SELECT * FROM ??', tableName, (err, res) => {
           if (err) reject(err);
+          connectionThread.release();
           resolve(res);
         });
       }
@@ -27,6 +29,7 @@ var orm = {
       connection.getConnection(function(err, connectionThread) {
       connectionThread.query('INSERT INTO ?? (??) VALUE (?)', [tableName, column, value], (err, res) => {
         if (err) reject(err);
+        connectionThread.release();
         resolve(res);
       })
     })
@@ -37,6 +40,7 @@ var orm = {
       connection.getConnection(function(err, connectionThread) {
         connectionThread.query('UPDATE ?? SET ?? = ? WHERE ?? = ?', [tableName, column, value, selectionTarget, selectionValue], (err, res) => {
         if (err) reject(err);
+        connectionThread.release();
         resolve(res);
       })
     })
