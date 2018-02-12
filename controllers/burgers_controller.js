@@ -24,20 +24,14 @@ router.put('/api/burgers', async (req, res) => {
 });
 
 router.post('/api/burgers', async (req, res, next) => {
-  await burger.addBurger(req.body.burgerName);
-  renderIndex(res);
+  let data = await burger.addBurger(req.body.burgerName);
+  res.send(data);
 });
 
 router.get('/', async (req, res) => {
-  console.log('Rendering res');
-  renderIndex(res);
-});
-
-async function renderIndex(res) {
   let uneaten = await burger.getAllUneatenBurgers();
   let eaten = await burger.getAllEatenBurgers();
   res.render('index', { uneatenBurgers: uneaten, eatenBurgers: eaten });
-}
-
+});
 
 module.exports = router;
