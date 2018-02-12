@@ -24,6 +24,10 @@ router.put('/api/burgers', async (req, res) => {
 });
 
 router.post('/api/burgers', async (req, res, next) => {
+  if (req.body.burgerName.length === 0) {
+    return;
+  }
+
   let data = await burger.addBurger(req.body.burgerName);
   res.send(data);
 });

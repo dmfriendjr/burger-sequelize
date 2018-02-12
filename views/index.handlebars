@@ -1,9 +1,9 @@
-<h1 class="text-center">Welcome to Ye Ole Burger Shoppe</h1>
+<div class="row justify-content-center mb-5 py-3 border-bottom bg-light">
+  <h1>Ye Ole Burger Shoppe</h1>
+</div>
 
-
-
-<div class="row">
-  <div class="col-4">
+<div class="row justify-content-between">
+  <div class="col-4 ml-3">
     <div class="card">
       <div class="card-header text-center">
         <h3>Click One To Eat It!</h3>
@@ -13,32 +13,30 @@
         <h3>No Burgers Available!</h3>
         {{/unless}}
         {{#each uneatenBurgers}}
-        <button class="btn btn-block btn-info eat-burger-btn" id={{id}}>{{burger_name}}!</button>
+        <button class="btn btn-block btn-white eat-burger-btn h3" id={{id}}>{{burger_name}}</button>
         {{/each}}
       </div>
     </div>
   </div>
-  <div class="col-md-4 push-xs-4" align="center">
+  <div class="col-md-3 push-xs-4" align="center">
     <form class="mt-5 text-center" id="burger-form">
-        <label for="burgerInput"><h3>Enter Your Dream Burger</h3></label>
-        <input style="text-align: center" type="text" class="form-control" name="burgerName" id="burgerInput" rows="3"></input>
-        <button type="submit" class="btn btn-primary m-3">Submit</button>
+        <label for="burgerInput"><h3>Make a burger!</h3></label>
+        <input style="text-align: center" type="text" class="form-control" name="burgerName" id="burgerInput" required></input>
+        <button type="submit" class="btn btn-primary m-3">Cook It</button>
     </form>
   </div>
-  <div class="col-4 ">
+  <div class="col-4 mr-3">
     <div class="card">
-      <div class="card-header">
+      <div class="card-header text-center">
         <h3>Eaten Burgers</h3>
       </div>
-      <div class="card-body">
-        <ul>
+      <div class="card-body text-center">
           {{#unless eatenBurgers}}
           <h3>No one has ate yet!</h3>
           {{/unless}}        
           {{#each eatenBurgers}}
-          <li>{{burger_name}}</li>
+          <h4 class="border rounded">{{burger_name}}</h4>
           {{/each}}
-        </ul>
       </div>  
     </div>
   </div>
