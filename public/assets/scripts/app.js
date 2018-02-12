@@ -2,7 +2,6 @@ console.log('Testing');
 
 Array.from(document.getElementsByClassName('eat-burger-btn')).forEach(element => {
   element.addEventListener('click', (event) => {
-    console.log(event.target.id);
     var xhr = new XMLHttpRequest();
     xhr.open('PUT', 'api/burgers');
     xhr.setRequestHeader('Content-Type', 'application/json');
@@ -10,7 +9,7 @@ Array.from(document.getElementsByClassName('eat-burger-btn')).forEach(element =>
       location.reload();
     };
     xhr.send(JSON.stringify({
-      burgerId: event.target.id,
+      burgerId: event.target.parentNode.id,
       devoured: 1
     }));
   });

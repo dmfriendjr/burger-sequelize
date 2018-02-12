@@ -13,7 +13,7 @@
         <h3>No Burgers Available!</h3>
         {{/unless}}
         {{#each uneatenBurgers}}
-        <button class="btn btn-block btn-white eat-burger-btn h3" id={{id}}>{{burger_name}}</button>
+        <button class="btn btn-block btn-white eat-burger-btn border rounded" id={{id}}><h4>{{burger_name}}</h4></button>
         {{/each}}
       </div>
     </div>
@@ -22,7 +22,7 @@
     <form class="mt-5 text-center" id="burger-form">
         <label for="burgerInput"><h3>Make a burger!</h3></label>
         <input style="text-align: center" type="text" class="form-control" name="burgerName" id="burgerInput" required></input>
-        <button type="submit" class="btn btn-primary m-3">Cook It</button>
+        <button type="submit" class="btn btn-danger m-3"><i class="fas fa-fire"></i></i> Cook It <i class="fas fa-fire"></i></button>
     </form>
   </div>
   <div class="col-4 mr-3">
