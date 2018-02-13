@@ -29,7 +29,7 @@ router.post('/api/burgers', async (req, res, next) => {
   }
   //Ensure burger name contains the word 'burger' for consistency
   if (req.body.burgerName.match(/(burger)/gi) === null) {
-    data += ' Burger';
+    req.body.burgerName += ' Burger';
   }
 
   let data = await burger.addBurger(req.body.burgerName);
