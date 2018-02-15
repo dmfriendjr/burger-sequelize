@@ -1,9 +1,9 @@
-<div class="row justify-content-center mb-5 py-3 border-bottom bg-light">
-  <h1>Ye Ole Burger Shoppe</h1>
+<div class="row text-center justify-content-center py-1 border-bottom bg-light">
+  <h1 class="header-text">Ye Ole Burger Shoppe</h1>
 </div>
 
-<div class="row justify-content-between">
-  <div class="col-4 ml-3">
+<div class="row">
+  <div class="col-lg-4 col-12 order-lg-first my-3">
     <div class="card">
       <div class="card-header text-center">
         <h3>Click One To Eat It!</h3>
@@ -13,19 +13,19 @@
         <h3>No Burgers Available!</h3>
         {{/unless}}
         {{#each uneatenBurgers}}
-        <button class="btn btn-block btn-white eat-burger-btn border rounded" id={{id}}><h4>{{burger_name}}</h4></button>
+        <button class="btn btn-block btn-light eat-burger-btn border rounded" id={{id}}><h4>{{burger_name}}</h4></button>
         {{/each}}
       </div>
     </div>
   </div>
-  <div class="col-md-3 push-xs-4" align="center">
+  <div class="col-lg-4 col-12 order-first my-3">
     <form class="mt-5 text-center" id="burger-form">
         <label for="burgerInput"><h3>Make a burger!</h3></label>
         <input style="text-align: center" type="text" class="form-control" name="burgerName" id="burgerInput" required></input>
         <button type="submit" class="btn btn-danger m-3"><i class="fas fa-fire"></i></i> Cook It <i class="fas fa-fire"></i></button>
     </form>
   </div>
-  <div class="col-4 mr-3">
+  <div class="col-lg-4 col-12 my-3">
     <div class="card">
       <div class="card-header text-center">
         <h3>Eaten Burgers</h3>
