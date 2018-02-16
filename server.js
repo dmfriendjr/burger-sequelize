@@ -2,9 +2,12 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const exphbs = require('express-handlebars');
 const routes = require('./controllers/burgers_controller');
+const db = require('./models');
 
 const app = express();
 const port = process.env.PORT || 3000;
+
+db.burgers.sync({force: true});
 
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
