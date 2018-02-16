@@ -1,15 +1,13 @@
 module.exports = (sequelize, DataTypes) => {
-  return sequelize.define('burgers', {
+  return sequelize.define('customers', {
     id: {
       type: DataTypes.INTEGER, 
       primaryKey: true, 
       autoIncrement: true,
     },
-    burger_name: {
+    customer_name: {
       type: DataTypes.STRING,
-      allowNull: false,
       validate: { len: [1, 25] }
-    },
-    devoured: {type: DataTypes.BOOLEAN, defaultValue: false}
+    }
   })
 }

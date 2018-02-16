@@ -8,6 +8,7 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 db.burgers.sync({force: true});
+db.customers.sync({force: true});
 
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');

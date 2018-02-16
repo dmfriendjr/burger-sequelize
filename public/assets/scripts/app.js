@@ -23,6 +23,7 @@ document.getElementById('burger-form').addEventListener('submit', (event) => {
     location.reload();
   };
   xhr.send(JSON.stringify({
-    burger_name: event.target[0].value
+    customer_name: event.target[0].value,
+    burger_name: event.target[1].value
   }));
 });
