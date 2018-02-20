@@ -33,7 +33,6 @@ router.get('/api/burgers/:eaten?', async (req, res) => {
 });
 
 router.put('/api/burgers', async (req, res) => {
-
   let data;  
   try {
     data = await db.burgers.update(req.body, {where: {id: req.body.id}});
@@ -58,20 +57,16 @@ router.post('/api/burgers', async (req, res, next) => {
     req.body.burger_name += ' Burger';
   }
 
-  console.log(req.body);
-
   let data;
   try {
-    if (req.body.customer_name != null) {
-      let custData  = await db.customers.create({customer_name: req.body.customer_name});
+    if (req.body.creator_name != null) {
+      let custData  = await db.customers.create({customer_name: req.body.creator_name});
       data = await db.burgers.create({burger_name: req.body.burger_name}).then(burgerData => {
         custData.addBurger(burgerData);
       })
     } else {
       data = await db.burgers.create(req.body.burger_name);
     }
-    
-    res.end();
   } catch(e) {
     if (e.name === 'SequelizeValidationError') {
       console.log('Validation error occured');
@@ -101,7 +96,6 @@ router.get('/', async (req, res) => {
 
   let uneatenBurgers = await convertBurgerData(uneatenData); 
   let eatenBurgers = await convertBurgerData(eatenData);
-  console.log('Uneaten is:',uneatenBurgers);
   res.render('index', { uneatenBurgers, eatenBurgers });
 });
 
@@ -110,8 +104,8 @@ async function convertBurgerData(data) {
     let result = data.map(async (burger) => {
       return burger.getCreator()
         .then(creatorData => {
-          console.log(creatorData);
           return {
+            id: burger.dataValues.id,
             creator_name: creatorData.dataValues.customer_name,
             burger_name: burger.dataValues.burger_name           
           } 

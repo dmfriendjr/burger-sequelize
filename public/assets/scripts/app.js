@@ -9,7 +9,7 @@ Array.from(document.getElementsByClassName('eat-burger-btn')).forEach(element =>
     };
     xhr.send(JSON.stringify({
       id: event.target.parentNode.id,
-      devoured: 1
+      devoured: true 
     }));
   });
 });
@@ -23,7 +23,7 @@ document.getElementById('burger-form').addEventListener('submit', (event) => {
     location.reload();
   };
   xhr.send(JSON.stringify({
-    customer_name: event.target[0].value,
+    creator_name: event.target[0].value,
     burger_name: event.target[1].value
   }));
 });
