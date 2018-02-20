@@ -59,13 +59,15 @@ router.post('/api/burgers', async (req, res, next) => {
 
   let data;
   try {
-    if (req.body.creator_name != null) {
+    console.log('Name:', req.body.creator_name.length);
+    if (req.body.creator_name.length !== 0) {
       let custData  = await db.customers.create({customer_name: req.body.creator_name});
       data = await db.burgers.create({burger_name: req.body.burger_name}).then(burgerData => {
         custData.addBurger(burgerData);
       })
     } else {
-      data = await db.burgers.create(req.body.burger_name);
+      console.log('No name provided');
+      data = await db.burgers.create({burger_name: req.body.burger_name});
     }
   } catch(e) {
     if (e.name === 'SequelizeValidationError') {
@@ -106,7 +108,7 @@ async function convertBurgerData(data) {
         .then(creatorData => {
           return {
             id: burger.dataValues.id,
-            creator_name: creatorData.dataValues.customer_name,
+            creator_name: creatorData ? creatorData.dataValues.customer_name : 'anonymous',
             burger_name: burger.dataValues.burger_name           
           } 
         });
